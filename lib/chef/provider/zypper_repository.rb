@@ -54,12 +54,14 @@ class Chef
       action :delete do
         declare_resource(:execute, "zypper --quiet --non-interactive removerepo #{escaped_repo_name}") do
           only_if "zypper --quiet lr #{escaped_repo_name}"
+          sleep 120
         end
       end
 
       action :refresh do
         declare_resource(:execute, "zypper --quiet --non-interactive refresh --force #{escaped_repo_name}") do
           only_if "zypper --quiet lr #{escaped_repo_name}"
+          sleep 120
         end
       end
 

@@ -145,8 +145,10 @@ class Chef
           zipped_names = zip(names, versions)
           if zypper_version < 1.0
             shell_out!("zypper", global_options, gpg_checks, command, *options, "-y", names)
+            sleep 120
           else
             shell_out!("zypper", global_options, "--non-interactive", gpg_checks, command, *options, zipped_names)
+            sleep 120
           end
         end
 
